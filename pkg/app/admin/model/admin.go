@@ -2,6 +2,7 @@ package model
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -43,9 +44,20 @@ type AdminClaims struct {
 }
 
 // 管理员Seeder
-func (model *Admin) Seeder() {
+func (model *Admin) Seeder(username, password string) {
+	fmt.Println("[+] Username:", username)
+	fmt.Println("[+] Password:", password)
 	seeders := []Admin{
-		{Username: "administrator", Nickname: "超级管理员", Email: "admin@yourweb.com", Phone: "10086", Password: hash.Make("123456"), Sex: 1, Status: 1, LastLoginTime: datetime.Now()},
+		{
+			Username:      username,
+			Nickname:      username,
+			Email:         "admin@yourweb.com",
+			Phone:         "10086",
+			Password:      hash.Make(password),
+			Sex:           1,
+			Status:        1,
+			LastLoginTime: datetime.Now(),
+		},
 	}
 
 	db.Client.Create(&seeders)

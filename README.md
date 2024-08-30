@@ -81,27 +81,39 @@ go run main.go
 
 后台地址： ```http://127.0.0.1:3000/admin/```
 
-账号：```administrator```
-密码：```123456```
+# 开发文档
 
-## 特别注意
-1. **后台用户认证使用了AppKey作为JWT的加密密串，生产环境请务必更改**
+https://quarkcloud.io/quark-go/installation.html
 
-## 相关项目
-- [QuarkSmart](https://github.com/quarkcloudio/quark-smart) 单体应用
-- [QuarkMicro](https://github.com/quarkcloudio/quark-micro) 微服务应用
+# 编译程序
 
-## 演示站点
-香港站点，页面加载可能比较缓慢
+go 版本
+```powershell
+go version go1.23.0 windows/amd64
+```
 
-- 地址：http://smart.quarkcloud.io/admin/#/
-- 账号：```administrator```
-- 密码：```123456```
+编译命令
+```powershell
+$env:GO111MODULE="on"
+go mod init quarkshell
+go mod tidy
+go mod vendor
+```
 
-## 技术支持
-为了避免打扰作者日常工作，你可以在Github上提交 [Issues](https://github.com/quarkcloudio/quark-go/issues)
+# 修改配置
 
-相关教程，你可以查看 [在线文档](http://quarkcloud.io/quark-go/)
+main.go
+```
+// JWT加密密串
+AppKey: "123456789@#2024"
+```
 
-## License
-QuarkGo is licensed under The MIT License (MIT).
+默认账号密码
+```powershell
+administrator/123456
+```
+
+设置账号密码
+```powershell
+.\quarkshell.exe -user username -pass password -port 3000
+```

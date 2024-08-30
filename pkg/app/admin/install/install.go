@@ -10,7 +10,7 @@ import (
 )
 
 // 执行安装操作
-func Handle() {
+func Handle(username, password string) {
 
 	// 如果锁定文件存在则不执行安装步骤
 	if file.IsExist("install.lock") {
@@ -39,7 +39,7 @@ func Handle() {
 	}
 	if adminInfo.Id == 0 {
 		// 数据填充
-		(&model.Admin{}).Seeder()
+		(&model.Admin{}).Seeder(username, password)
 		(&model.Config{}).Seeder()
 		(&model.Menu{}).Seeder()
 	}
